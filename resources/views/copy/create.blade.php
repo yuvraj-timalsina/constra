@@ -26,35 +26,49 @@
                 <div class="col-md-12">
                     <div class="card card-body">
 
-                        <form>
+                        <form action="{{ route('banners.store') }}" method="POST" enctype="multipart/form-data">
+                            @csrf
                             <div class="card-body">
                                 <div class="form-group">
                                     <label>Sub Header</label>
-                                    <input type="text" class="form-control">
+                                    <input name="sub_header" type="text"
+                                        class="form-control @error('sub_header') is-invalid @enderror">
+                                    @error('sub_header')
+                                        <span class="error invalid-feedback">{{ $message }}</span>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <label>Header</label>
-                                    <input type="text" class="form-control">
+                                    <input name="header" type="text"
+                                        class="form-control @error('header') is-invalid @enderror">
+                                    @error('header')
+                                        <span class="error invalid-feedback">{{ $message }}</span>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <label>Short Intro</label>
-                                    <textarea class="form-control" rows="3"></textarea>
+                                    <textarea name="short_intro" class="form-control @error('short_intro') is-invalid @enderror" rows="3"></textarea>
+                                    @error('short_intro')
+                                        <span class="error invalid-feedback">{{ $message }}</span>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
                                     <label>Link</label>
-                                    <input type="url" class="form-control">
+                                    <input name="link" type="url" class="form-control @error('link') is-invalid @enderror">
+                                    @error('link')
+                                        <span class="error invalid-feedback">{{ $message }}</span>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="exampleInputFile">Cover Image</label>
-                                    <div class="input-group">
-                                        <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="exampleInputFile">
-                                            <label class="custom-file-label" for="exampleInputFile">Choose Cover Image</label>
-                                        </div>
-                                    </div>
+                                    <label>Cover Image</label>
+                                    <input name="image" class="form-control @error('image') is-invalid @enderror"
+                                        type="file">
+                                    @error('image')
+                                        <span class="error invalid-feedback">{{ $message }}</span>
+                                    @enderror
                                 </div>
                                 <div class="form-group">
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                    <button type="submit" class="btn btn-primary">Save Banner</button>
                                 </div>
                             </div>
                         </form>

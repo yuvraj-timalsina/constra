@@ -15,8 +15,7 @@ class BannerController extends Controller
      */
     public function index()
     {
-        $banners = Banner::all();
-        toastr()->info('Are you the 6 fingered man?');
+        $banners = Banner::with('image')->get();
         return view('backend.banner.index', compact('banners'));
     }
 
@@ -38,7 +37,22 @@ class BannerController extends Controller
      */
     public function store(StoreBannerRequest $request)
     {
-        //
+        $banner = Banner::create([
+            'sub_header' => $request->sub_header,
+            'header' => $request->header,
+            'short_intro' => $request->short_intro,
+            'link' => $request->link,
+        ]);
+
+        if ($request->hasFile('image')) {
+            $image = $request->image->store('banner');
+            $banner->image()->create([
+                'image' => $image
+            ]);
+        }
+
+        toastr()->success('Banner Created Successfully!');
+        return redirect(route('banners.index'));
     }
 
     /**
