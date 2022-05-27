@@ -4,16 +4,12 @@
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
-                <div class="col-sm-6">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                        <li class="breadcrumb-item active">Banner</li>
-                    </ol>
-                </div>
+                @include('partials.breadcrumb')
                 <div class="col-sm-6">
                     <div class="d-flex">
-                        <a href="{{ route('banners.index') }}" type="button" class="btn btn-outline-danger ml-auto">Go
-                            Back</a>
+                        <a href="{{ route('banners.index') }}" type="button" class="btn btn-primary ml-auto"><i
+                                class="far fa-hand-point-left mr-1"></i>
+                            Go Back</a>
                     </div>
                 </div>
             </div>
@@ -68,7 +64,8 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <button type="submit" class="btn btn-primary">Save Banner</button>
+                                    <button type="submit" class="btn btn-success"><i class="fas fa-save mr-1"></i>Save
+                                        Banner</button>
                                 </div>
                             </div>
                         </form>

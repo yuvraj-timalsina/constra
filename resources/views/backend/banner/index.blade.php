@@ -4,15 +4,11 @@
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
-                <div class="col-sm-6">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                        <li class="breadcrumb-item active">Banner</li>
-                    </ol>
-                </div>
+                @include('partials.breadcrumb')
                 <div class="col-sm-6">
                     <div class="d-flex">
-                        <a href="{{ route('banners.create') }}" type="button" class="btn btn-outline-danger ml-auto">Create
+                        <a href="{{ route('banners.create') }}" type="button" class="btn btn-success ml-auto"><i
+                                class="fas fa-paper-plane mr-1"></i>Create
                             Banner</a>
                     </div>
                 </div>
@@ -31,6 +27,7 @@
                                         <th style="width: 10px">S.N.</th>
                                         <th>Sub Header</th>
                                         <th>Cover Image</th>
+                                        <th>Link</th>
                                         <th style="width: 40px">Action</th>
                                     </tr>
                                 </thead>
@@ -43,7 +40,16 @@
                                                 <img src="{{ asset('/storage/' . $banner->image->image) }}" alt=""
                                                     width="50px">
                                             </td>
-                                            <td><span class="badge bg-danger">55%</span></td>
+                                            <td><a href="{{ $banner->link }}" target="_blank">{{ $banner->link }}</a>
+                                            </td>
+                                            <td class="d-flex">
+                                                <a class="btn bg-info mr-2">
+                                                    <i class="fas fa-edit"></i>
+                                                </a>
+                                                <a class="btn bg-danger">
+                                                    <i class="fas fa-trash"></i>
+                                                </a>
+                                            </td>
                                         </tr>
                                     @endforeach
                                 </tbody>
