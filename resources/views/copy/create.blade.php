@@ -27,9 +27,9 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label>Sub Header</label>
-                                    <input name="sub_header" type="text"
-                                        class="form-control @error('sub_header') is-invalid @enderror">
-                                    @error('sub_header')
+                                    <input name="title" type="text"
+                                        class="form-control @error('title') is-invalid @enderror">
+                                    @error('title')
                                         <span class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>

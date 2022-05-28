@@ -6,13 +6,14 @@ use App\Http\Traits\ImageTrait;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Banner extends Model
 {
     use HasFactory;
     use ImageTrait;
 
-    protected $fillable = ['sub_header', 'header', 'short_intro', 'link'];
+    protected $fillable = ['title', 'header', 'short_intro', 'link'];
 
     protected static function boot()
     {
@@ -20,7 +21,17 @@ class Banner extends Model
 
         self::addGlobalScope(function (Builder $builder) {
 
-            $builder->orderBy('sub_header', 'ASC');
+            $builder->orderBy('title', 'ASC');
         });
+    }
+
+    /**
+     * Delete post image from Storage.
+     *
+     * @return void
+     */
+    public function deleteImage()
+    {
+        Storage::delete($this->image->image);
     }
 }

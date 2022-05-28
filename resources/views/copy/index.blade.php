@@ -34,7 +34,7 @@
                                     @foreach ($banners as $banner)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $banner->sub_header }}</td>
+                                            <td>{{ $banner->title }}</td>
                                             <td>
                                                 <img src="{{ asset('/storage/' . $banner->image->image) }}" alt=""
                                                     width="50px">

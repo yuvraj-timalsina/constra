@@ -13,7 +13,7 @@ class UpdateBannerRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,10 @@ class UpdateBannerRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'title' => 'required',
+            'header' => 'required',
+            'short_intro' => 'required',
+            'link' => 'required',
         ];
     }
 }

@@ -24,7 +24,7 @@ class StoreBannerRequest extends FormRequest
     public function rules()
     {
         return [
-            'sub_header' => 'required|unique:banners,sub_header',
+            'title' => 'required|unique:banners,title',
             'header' => 'required',
             'short_intro' => 'required',
             'link' => 'required',

@@ -84,7 +84,7 @@
     </div>
 
     <script src="{{ mix('js/app.js') }}" defer></script>
-
+    @yield('scripts')
     @yield('third_party_scripts')
     @jquery
     @toastr_js
