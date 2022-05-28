@@ -38,7 +38,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label>Sub Header</label>
+                                    <label>Title</label>
                                     <input name="title" value="{!! $banner->title !!}" type="text"
                                         class="form-control @error('title') is-invalid @enderror">
                                     @error('title')

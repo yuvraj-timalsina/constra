@@ -25,7 +25,7 @@
                                 <thead>
                                     <tr>
                                         <th style="width: 10px">S.N.</th>
-                                        <th>Sub Header</th>
+                                        <th>Title</th>
                                         <th>Cover Image</th>
                                         <th>Link</th>
                                         <th style="width: 40px">Action</th>

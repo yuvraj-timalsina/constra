@@ -35,8 +35,8 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label>Sub Header</label>
-                                    <input name="title" type="text"
+                                    <label>Title</label>
+                                    <input name="title" value="{{ old('title') }}" type="text"
                                         class="form-control @error('title') is-invalid @enderror">
                                     @error('title')
                                         <span class="error invalid-feedback">{{ $message }}</span>
@@ -44,7 +44,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Header</label>
-                                    <input name="header" type="text"
+                                    <input name="header" value="{{ old('header') }}" type="text"
                                         class="form-control @error('header') is-invalid @enderror">
                                     @error('header')
                                         <span class="error invalid-feedback">{{ $message }}</span>
@@ -52,14 +52,16 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Short Intro</label>
-                                    <textarea name="short_intro" class="form-control @error('short_intro') is-invalid @enderror" rows="3"></textarea>
+                                    <textarea name="short_intro" class="form-control @error('short_intro') is-invalid @enderror"
+                                        rows="3">{{ old('short_intro') }}"</textarea>
                                     @error('short_intro')
                                         <span class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
                                 <div class="form-group">
                                     <label>Link</label>
-                                    <input name="link" type="url" class="form-control @error('link') is-invalid @enderror">
+                                    <input name="link" value="{{ old('link') }}" type="url"
+                                        class="form-control @error('link') is-invalid @enderror">
                                     @error('link')
                                         <span class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
