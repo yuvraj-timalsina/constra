@@ -13,7 +13,12 @@ class Banner extends Model
     use HasFactory;
     use ImageTrait;
 
-    protected $fillable = ['title', 'header', 'short_intro', 'link'];
+    protected $fillable = [
+        'title',
+        'header',
+        'short_intro',
+        'link'
+    ];
 
     protected static function boot()
     {
