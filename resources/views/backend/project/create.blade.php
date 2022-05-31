@@ -7,7 +7,7 @@
                 @include('partials.breadcrumb')
                 <div class="col-sm-6">
                     <div class="d-flex">
-                        <a href="{{ route('banners.index') }}" type="button" class="btn btn-primary ml-auto"><i
+                        <a href="{{ route('projects.index') }}" type="button" class="btn btn-primary ml-auto"><i
                                 class="far fa-hand-point-left mr-1"></i>
                             Go Back</a>
                     </div>
@@ -21,7 +21,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card card-body">
-                        <form action="{{ route('banners.store') }}" method="POST" enctype="multipart/form-data">
+                        <form action="{{ route('projects.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="card-body">
                                 <div class="form-group">
