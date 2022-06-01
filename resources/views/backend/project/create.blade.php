@@ -24,13 +24,10 @@
                         <form action="{{ route('projects.store') }}" method="POST" enctype="multipart/form-data">
                             @csrf
                             <div class="card-body">
-                                <div class="form-group">
-                                    <label for="file-input">
-                                        <img id="frame" src="https://picsum.photos/1155/235" alt="" width="1155px"
-                                            height="235px"></label>
-                                    <input id="file-input" onchange="preview()" name="image"
-                                        class="d-none form-control @error('image') is-invalid @enderror" type="file">
-                                    @error('image')
+                                <div class="form-group input-field">
+                                    <label>Project Gallery</label>
+                                    <div class="input-images"></div>
+                                    @error('project_gallery')
                                         <span class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -43,14 +40,6 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label>Header</label>
-                                    <input name="header" value="{{ old('header') }}" type="text"
-                                        class="form-control @error('header') is-invalid @enderror">
-                                    @error('header')
-                                        <span class="error invalid-feedback">{{ $message }}</span>
-                                    @enderror
-                                </div>
-                                <div class="form-group">
                                     <label>Short Intro</label>
                                     <textarea name="short_intro" class="form-control @error('short_intro') is-invalid @enderror"
                                         rows="3">{{ old('short_intro') }}</textarea>
@@ -59,16 +48,58 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label>Link</label>
-                                    <input name="link" value="{{ old('link') }}" type="url"
-                                        class="form-control @error('link') is-invalid @enderror">
-                                    @error('link')
+                                    <label>Client</label>
+                                    <input name="client" value="{{ old('client') }}" type="text"
+                                        class="form-control @error('client') is-invalid @enderror">
+                                    @error('client')
                                         <span class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
                                 <div class="form-group">
+                                    <label>Architect</label>
+                                    <input name="architect" value="{{ old('architect') }}" type="text"
+                                        class="form-control @error('architect') is-invalid @enderror">
+                                    @error('architect')
+                                        <span class="error invalid-feedback">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label>Location</label>
+                                    <input name="location" value="{{ old('location') }}" type="text"
+                                        class="form-control @error('location') is-invalid @enderror">
+                                    @error('location')
+                                        <span class="error invalid-feedback">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label>Size</label>
+                                    <input name="size" value="{{ old('size') }}" type="text"
+                                        class="form-control @error('size') is-invalid @enderror">
+                                    @error('size')
+                                        <span class="error invalid-feedback">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label>Completion Year</label>
+                                    <input name="title" value="{{ old('title') }}" type="text"
+                                        class="form-control @error('title') is-invalid @enderror">
+                                    @error('title')
+                                        <span class="error invalid-feedback">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <label>Categories</label>
+                                    <select name="categories[]" multiple
+                                        class="form-control categories @error('categories') is-invalid @enderror">
+                                        @error('categories')
+                                            <span class="error invalid-feedback">{{ $message }}</span>
+                                        @enderror
+                                        <option value="{{ old('categories') }}">Healthcare</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
                                     <button type="submit" class="btn btn-success"><i class="fas fa-save mr-1"></i>Save
-                                        Banner</button>
+                                        Project</button>
                                 </div>
                             </div>
                         </form>
@@ -79,9 +110,22 @@
     </section>
 @endsection
 @section('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
-        function preview() {
-            frame.src = URL.createObjectURL(event.target.files[0]);
-        }
+        $(document).ready(function() {
+            $('.categories').select2({
+                theme: 'classic'
+            });
+        });
     </script>
+    <script src="{{ asset('js/image-uploader.min.js') }}"></script>
+    <script>
+        $('.input-images').imageUploader({
+            imagesInputName: 'project_gallery',
+        });
+    </script>
+@endsection
+@section('styles')
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="{{ asset('css/image-uploader.min.css') }}">
 @endsection

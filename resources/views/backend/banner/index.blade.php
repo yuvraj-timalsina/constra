@@ -38,7 +38,7 @@
                                             <td>{{ $banner->title }}</td>
                                             <td>
                                                 <img src="{{ asset('/storage/' . $banner->image->image) }}" alt=""
-                                                    width="50px">
+                                                    width="100px" height="50px">
                                             </td>
                                             <td><a href="{{ $banner->link }}" target="_blank">{{ $banner->link }}</a>
                                             </td>

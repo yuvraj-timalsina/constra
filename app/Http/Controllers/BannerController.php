@@ -61,9 +61,8 @@ class BannerController extends Controller
      * @param  \App\Models\Banner  $banner
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Banner $banner)
     {
-        $banner = Banner::findOrFail($id);
         return view('backend.banner.show', compact('banner'));
     }
 

@@ -11,12 +11,20 @@ class Project extends Model
 
     protected $fillable = [
         'title',
+        'slug',
         'short_intro',
         'client',
         'architect',
         'location',
         'size',
         'completion_year',
-        'categories'
     ];
+
+    /**
+     * The categories that belong to the project.
+     */
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class);
+    }
 }

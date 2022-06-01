@@ -5,14 +5,10 @@
     <meta charset="UTF-8">
     <title>{{ config('app.name') }}</title>
     <meta content='width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no' name='viewport'>
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"
-        integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog=="
-        crossorigin="anonymous" />
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" />
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
-
     @yield('third_party_stylesheets')
+    @yield('styles')
     @toastr_css
     @stack('page_css')
 </head>
@@ -27,8 +23,11 @@
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i
                             class="fas fa-bars"></i></a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('home') }}" target="_blank"><i
+                            class="fas fa-globe"></i></a>
+                </li>
             </ul>
-
             <ul class="navbar-nav ml-auto">
                 <li class="nav-item dropdown user-menu">
                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">
@@ -83,10 +82,9 @@
         </footer>
     </div>
 
-    <script src="{{ mix('js/app.js') }}" defer></script>
-    @yield('scripts')
+    <script src="{{ mix('js/app.js') }}"></script>
     @yield('third_party_scripts')
-    @jquery
+    @yield('scripts')
     @toastr_js
     @toastr_render
     @stack('page_scripts')

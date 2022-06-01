@@ -8,7 +8,7 @@ use App\Http\Controllers\ProjectController;
 
 Auth::routes(['register' => false]);
 
-Route::view('/', 'frontend.home.index');
+Route::view('/', 'frontend.home.index')->name('home');
 
 Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
 

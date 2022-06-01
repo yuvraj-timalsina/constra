@@ -15,6 +15,7 @@ class Banner extends Model
 
     protected $fillable = [
         'title',
+        'slug',
         'header',
         'short_intro',
         'link'
