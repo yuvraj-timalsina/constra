@@ -26,8 +26,8 @@
                                     <tr>
                                         <th style="width: 10px">S.N.</th>
                                         <th>Title</th>
-                                        <th>Cover Image</th>
-                                        <th>Link</th>
+                                        <th>Category</th>
+                                        <th>Gallery</th>
                                         <th style="width: 40px">Action</th>
                                     </tr>
                                 </thead>
@@ -36,11 +36,11 @@
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $project->title }}</td>
+                                            <td><a href="{{ $project->link }}" target="_blank">{{ $project->link }}</a>
+                                            </td>
                                             <td>
                                                 <img src="{{ asset('/storage/' . $project->image->image) }}" alt=""
                                                     width="50px">
-                                            </td>
-                                            <td><a href="{{ $project->link }}" target="_blank">{{ $project->link }}</a>
                                             </td>
                                             <td class="d-flex">
                                                 <a href="{{ route('projects.edit', $project->id) }}"

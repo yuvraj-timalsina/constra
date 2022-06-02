@@ -51,11 +51,10 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        // return response()->json($category);
-
-        return json_encode($category);
-
-        // return view('backend.category.show', compact('category'));
+        if (request()->ajax()) {
+            return json_encode($category);
+        }
+        return redirect(route('categories.index'));
     }
 
     /**
