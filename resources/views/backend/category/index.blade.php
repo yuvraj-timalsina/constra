@@ -7,9 +7,9 @@
                 @include('partials.breadcrumb')
                 <div class="col-sm-6">
                     <div class="d-flex">
-                        <a href="{{ route('banners.create') }}" type="button" class="btn btn-success ml-auto"><i
+                        <a href="{{ route('categories.create') }}" type="button" class="btn btn-success ml-auto"><i
                                 class="fas fa-paper-plane mr-1"></i>Create
-                            Banner</a>
+                            category</a>
                     </div>
                 </div>
             </div>
@@ -26,32 +26,25 @@
                                     <tr>
                                         <th style="width: 10px">S.N.</th>
                                         <th>Title</th>
-                                        <th>Cover Image</th>
-                                        <th>Link</th>
                                         <th style="width: 40px">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($banners as $banner)
+                                    @foreach ($categories as $category)
                                         <tr>
                                             <td>{{ $loop->iteration }}</td>
-                                            <td>{{ $banner->title }}</td>
-                                            <td>
-                                                <img src="{{ asset('/storage/' . $banner->image->image) }}" alt=""
-                                                    width="100px" height="50px">
-                                            </td>
-                                            <td><a href="{{ $banner->link }}" target="_blank">{{ $banner->link }}</a>
-                                            </td>
+                                            <td>{{ $category->title }}</td>
                                             <td class="d-flex">
-                                                <a href="{{ route('banners.show', $banner->id) }}"
-                                                    class="btn bg-success mr-2">
+                                                <button class="btn bg-success mr-2" data-toggle="modal"
+                                                    data-target="#catModal" onclick="showCategory({{ $category->id }})">
                                                     <i class="fas fa-eye"></i>
-                                                </a>
-                                                <a href="{{ route('banners.edit', $banner->id) }}"
+                                                </button>
+                                                <a href="{{ route('categories.edit', $category->id) }}"
                                                     class="btn bg-info mr-2">
                                                     <i class="fas fa-edit"></i>
                                                 </a>
-                                                <form action="{{ route('banners.destroy', $banner->id) }}" method="POST">
+                                                <form action="{{ route('categories.destroy', $category->id) }}"
+                                                    method="POST">
                                                     @csrf
                                                     @method('DELETE')
                                                     <button type="submit" class="btn bg-danger">
@@ -69,4 +62,40 @@
             </div>
         </div>
     </section>
+    <!-- The Modal -->
+    <div class="modal fade" id="catModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title">Project Category</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <!-- Modal body -->
+                <div class="modal-body">
+                    Modal body..
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Exit</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script>
+        function showCategory(id) {
+            $.ajax({
+                type: "GET",
+                url: "{{ url('/categories/') }}/" + id,
+                dataType: "json",
+                success: function(res) {
+                    $('.modal-body').empty();
+                    $('.modal-body').html(res.title);
+                }
+            });
+        }
+    </script>
 @endsection

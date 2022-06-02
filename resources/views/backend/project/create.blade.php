@@ -25,9 +25,9 @@
                             @csrf
                             <div class="card-body">
                                 <div class="form-group input-field">
-                                    <label>Project Gallery</label>
-                                    <div class="input-images"></div>
-                                    @error('project_gallery')
+                                    <label>Gallery</label>
+                                    <div class="gallery-images"></div>
+                                    @error('gallery')
                                         <span class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -120,8 +120,8 @@
     </script>
     <script src="{{ asset('js/image-uploader.min.js') }}"></script>
     <script>
-        $('.input-images').imageUploader({
-            imagesInputName: 'project_gallery',
+        $('.gallery-images').imageUploader({
+            imagesInputName: 'gallery',
         });
     </script>
 @endsection
