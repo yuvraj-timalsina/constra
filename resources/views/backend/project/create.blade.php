@@ -94,7 +94,9 @@
                                         @error('categories')
                                             <span class="error invalid-feedback">{{ $message }}</span>
                                         @enderror
-                                        <option value="{{ old('categories') }}">Healthcare</option>
+                                        @foreach ($categories as $category)
+                                            <option value="{{ $category->id }}">{!! $category->title !!}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 <div class="form-group">

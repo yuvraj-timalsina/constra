@@ -92,7 +92,7 @@ class CategoryController extends Controller
      */
     public function destroy(Category $category)
     {
-        $category->forceDelete();
+        $category->delete();
 
         toastr()->error('Category Deleted Successfully!');
         return redirect(route('categories.index'));

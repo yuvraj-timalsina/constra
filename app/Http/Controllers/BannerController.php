@@ -63,7 +63,10 @@ class BannerController extends Controller
      */
     public function show(Banner $banner)
     {
-        return view('backend.banner.show', compact('banner'));
+        if (request()->ajax()) {
+            return json_encode($banner->load('image'));
+        }
+        return redirect(route('categories.index'));
     }
 
     /**
@@ -117,7 +120,7 @@ class BannerController extends Controller
         $banner->deleteImage();
 
         /** delete banner permanently */
-        $banner->forceDelete();
+        $banner->delete();
 
         toastr()->error('Banner Deleted Successfully!');
         return redirect(route('banners.index'));

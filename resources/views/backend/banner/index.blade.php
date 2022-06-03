@@ -43,10 +43,10 @@
                                             <td><a href="{{ $banner->link }}" target="_blank">{{ $banner->link }}</a>
                                             </td>
                                             <td class="d-flex">
-                                                <a href="{{ route('banners.show', $banner->id) }}"
-                                                    class="btn bg-success mr-2">
+                                                <button class="btn bg-success mr-2" data-toggle="modal"
+                                                    data-target="#bannerModal" onclick="showBanner({{ $banner->id }})">
                                                     <i class="fas fa-eye"></i>
-                                                </a>
+                                                </button>
                                                 <a href="{{ route('banners.edit', $banner->id) }}"
                                                     class="btn bg-info mr-2">
                                                     <i class="fas fa-edit"></i>
@@ -69,4 +69,42 @@
             </div>
         </div>
     </section>
+    <!-- The Modal -->
+    <div class="modal fade" id="bannerModal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <h4 class="modal-title"></h4>
+                    <button type="button" class="close" data-dismiss="modal"><i
+                            class="far fa-times-circle"></i></button>
+                </div>
+
+                <!-- Modal Body -->
+                <div class="modal-body">
+                    <img class="card-img-top mb-2" src="" alt="">
+                    <p class="card-text"></p>
+                    <a class="card-link btn btn-primary float-right" href="" target="_blank"><i class="fas fa-link"></i>
+                        Visit
+                        Link</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <script>
+        function showBanner(id) {
+            $.ajax({
+                type: "GET",
+                url: "{{ url('/banners/') }}/" + id,
+                dataType: "json",
+                success: function(res) {
+                    $('.modal-title').html(res.title);
+                    $('.card-text').html(res.short_intro);
+                    $('.card-link').attr('href', res.link);
+                    $('.card-img-top').attr('src', '/storage/' + res.image.image);
+                }
+            });
+        }
+    </script>
 @endsection

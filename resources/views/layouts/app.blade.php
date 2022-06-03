@@ -21,11 +21,11 @@
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i
-                            class="fas fa-bars"></i></a>
+                            class="fas fa-align-left"></i></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('home') }}" target="_blank"><i
-                            class="fas fa-globe"></i></a>
+                            class="fas fa-globe mr-1"></i>Visit Website</a>
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">
