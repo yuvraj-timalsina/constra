@@ -27,7 +27,8 @@ class UpdateBannerRequest extends FormRequest
             'title' => 'required',
             'header' => 'required',
             'short_intro' => 'required',
-            'link' => 'required',
+            'link' => 'required|url',
+            'image' => 'nullable|image'
         ];
     }
 }

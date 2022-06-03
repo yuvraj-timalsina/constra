@@ -37,17 +37,12 @@ class BannerController extends Controller
      */
     public function store(StoreBannerRequest $request)
     {
-        $banner = Banner::create([
-            'title' => $request->title,
-            'header' => $request->header,
-            'short_intro' => $request->short_intro,
-            'link' => $request->link,
-        ]);
+        $banner = Banner::create($request->safe()->except(['image']));
 
         if ($request->hasFile('image')) {
             $image = $request->image->store('banner');
             $banner->image()->create([
-                'image' => $image
+                'imageFile' => $image
             ]);
         }
 
@@ -98,7 +93,7 @@ class BannerController extends Controller
             /** delete old image */
             $banner->deleteImage();
             $banner->image()->update([
-                'image' => $image
+                'imageFile' => $image
             ]);
         }
 

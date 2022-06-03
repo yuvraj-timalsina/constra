@@ -27,7 +27,7 @@ class StoreBannerRequest extends FormRequest
             'title' => 'required|unique:banners,title',
             'header' => 'required',
             'short_intro' => 'required',
-            'link' => 'required',
+            'link' => 'required|url',
             'image' => 'required|image',
         ];
     }

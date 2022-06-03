@@ -38,6 +38,6 @@ class Banner extends Model
      */
     public function deleteImage()
     {
-        Storage::delete($this->image->image);
+        Storage::delete($this->image->imageFile);
     }
 }

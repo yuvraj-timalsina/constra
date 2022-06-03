@@ -37,7 +37,7 @@
                                             <td>{{ $loop->iteration }}</td>
                                             <td>{{ $banner->title }}</td>
                                             <td>
-                                                <img src="{{ asset('/storage/' . $banner->image->image) }}" alt=""
+                                                <img src="{{ asset('/storage/' . $banner->image->imageFile) }}" alt=""
                                                     width="100px" height="50px">
                                             </td>
                                             <td><a href="{{ $banner->link }}" target="_blank">{{ $banner->link }}</a>
@@ -102,7 +102,7 @@
                     $('.modal-title').html(res.title);
                     $('.card-text').html(res.short_intro);
                     $('.card-link').attr('href', res.link);
-                    $('.card-img-top').attr('src', '/storage/' + res.image.image);
+                    $('.card-img-top').attr('src', '/storage/' + res.image.imageFile);
                 }
             });
         }

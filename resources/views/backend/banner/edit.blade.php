@@ -29,8 +29,8 @@
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="file-input"><img id="frame"
-                                            src="{{ asset('/storage/' . $banner->image->image) }}" alt="" width="1155px"
-                                            height="235px"></label>
+                                            src="{{ asset('/storage/' . $banner->image->imageFile) }}" alt=""
+                                            width="1155px" height="235px"></label>
                                     <input id="file-input" onchange="preview()" name="image"
                                         class="d-none form-control @error('image') is-invalid @enderror" type="file">
                                     @error('image')
