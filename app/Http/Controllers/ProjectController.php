@@ -6,6 +6,7 @@ use App\Models\Project;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Category;
+use Illuminate\Support\Facades\DB;
 
 class ProjectController extends Controller
 {
@@ -16,7 +17,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        $projects = Project::all();
+        $projects = Project::with('categories', 'images')->get();
         return view('backend.project.index', compact('projects'));
     }
 
@@ -39,7 +40,21 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request)
     {
-        //
+        DB::transaction(function () use ($request) {
+            $project = Project::create($request->safe()->except(['category_id', 'gallery']));
+            $project->categories()->attach($request->category_id);
+
+            if ($request->hasFile('gallery')) {
+                foreach ($request->gallery as $image) {
+                    $image = $image->store('project');
+                    $project->image()->create([
+                        'imageFile' => $image
+                    ]);
+                }
+            }
+        });
+        toastr()->success('Project Created Successfully!');
+        return redirect(route('projects.index'));
     }
 
     /**
@@ -50,7 +65,10 @@ class ProjectController extends Controller
      */
     public function show(Project $project)
     {
-        //
+        if (request()->ajax()) {
+            return json_encode($project->load('image'));
+        }
+        return redirect(route('projects.index'));
     }
 
     /**
@@ -61,7 +79,9 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
-        //
+        $categories = Category::all();
+        $project->load('images');
+        return view('backend.project.edit', compact('project', 'categories'));
     }
 
     /**
@@ -73,7 +93,21 @@ class ProjectController extends Controller
      */
     public function update(UpdateProjectRequest $request, Project $project)
     {
-        //
+        DB::transaction(function () use ($request, $project) {
+            $project->update($request->safe()->except(['category_id', 'gallery']));
+            $project->categories()->sync($request->category_id);
+
+            if ($request->hasFile('gallery')) {
+                foreach ($request->gallery as $image) {
+                    $image = $image->store('project');
+                    $project->image()->create([
+                        'imageFile' => $image
+                    ]);
+                }
+            }
+        });
+        toastr()->success('Project Updated Successfully!');
+        return redirect(route('projects.index'));
     }
 
     /**

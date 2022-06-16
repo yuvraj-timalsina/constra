@@ -24,7 +24,7 @@ class UpdateBannerRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required',
+            'title' => 'required|unique:banners,title,' . $this->banner->id,
             'header' => 'required',
             'short_intro' => 'required',
             'link' => 'required|url',

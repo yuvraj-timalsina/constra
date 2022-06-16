@@ -15,7 +15,6 @@
             </div>
         </div>
     </section>
-
     <section class="content">
         <div class="container-fluid">
             <div class="row">
@@ -81,17 +80,17 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Completion Year</label>
-                                    <input name="title" value="{{ old('title') }}" type="text"
-                                        class="form-control @error('title') is-invalid @enderror">
-                                    @error('title')
+                                    <input name="completion_year" value="{{ old('completion_year') }}" type="text"
+                                        class="form-control @error('completion_year') is-invalid @enderror">
+                                    @error('completion_year')
                                         <span class="error invalid-feedback">{{ $message }}</span>
                                     @enderror
                                 </div>
                                 <div class="form-group">
                                     <label>Categories</label>
-                                    <select name="categories[]" multiple
-                                        class="form-control categories @error('categories') is-invalid @enderror">
-                                        @error('categories')
+                                    <select name="category_id[]" multiple
+                                        class="form-control categories @error('category_id') is-invalid @enderror">
+                                        @error('category_id')
                                             <span class="error invalid-feedback">{{ $message }}</span>
                                         @enderror
                                         @foreach ($categories as $category)

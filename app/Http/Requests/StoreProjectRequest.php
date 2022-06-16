@@ -13,7 +13,7 @@ class StoreProjectRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,17 @@ class StoreProjectRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'title' => 'required|unique:projects,title',
+            'short_intro' => 'required',
+            'client' => 'required|unique:projects,client',
+            'architect' => 'required|unique:projects,architect',
+            'location' => 'required|unique:projects,location',
+            'size' => 'required',
+            'completion_year' => 'required|unique:projects,completion_year',
+            'category_id' => 'required|array',
+            'category_id.*' => 'exists:categories,id',
+            'gallery' => 'required|array',
+            'gallery.*' => 'image',
         ];
     }
 }
